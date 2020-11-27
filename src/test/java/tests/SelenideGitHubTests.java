@@ -17,12 +17,12 @@ public class SelenideGitHubTests extends TestBase {
 
     @Test
     @Issue("JIRA-123321")
-    @DisplayName("Selenide - Check That Homework for Lecture 3 Exist")
+    @DisplayName("Using Selenide - Check That Homework for Lecture 5 Exist")
     @Description("Verification that homework have been completed")
     @Tag("GitHub")
     @Owner("Sergei P")
-    @Severity(SeverityLevel.CRITICAL)
-    public void assertThatLectureFiveHomeworkExistSelenide() {
+    @Severity(SeverityLevel.TRIVIAL)
+    public void assertThatLectureFiveHomeworkExistUsingPureSelenide() {
         open(URL);
         $(".header-search-input").click();
         $(".header-search-input").setValue(USER);
@@ -32,4 +32,6 @@ public class SelenideGitHubTests extends TestBase {
         $(byLinkText(USER)).click();
         $(withText(NAME)).should(exist);
     }
+
+
 }
