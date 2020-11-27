@@ -17,5 +17,5 @@ public class TestBase {
 
     public String URL = "https://github.com/",
             USER = "iampershing",
-            NAME = "qaguru3_lesson3";
+            NAME = "qaguru3_lesson5";
 }
