@@ -22,7 +22,7 @@ public class SelenideGitHubTests extends TestBase {
     @Tag("GitHub")
     @Owner("Sergei P")
     @Severity(SeverityLevel.CRITICAL)
-    public void assertThatLectureThreeHomeworkExistSelenide() {
+    public void assertThatLectureFiveHomeworkExistSelenide() {
         open(URL);
         $(".header-search-input").click();
         $(".header-search-input").setValue(USER);

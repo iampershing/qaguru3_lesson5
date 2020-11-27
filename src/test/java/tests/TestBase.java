@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 public class TestBase {
 
     @BeforeEach
-    static void setUp() {
+    void setUp() {
         Configuration.startMaximized = true;
         Selenide.clearBrowserCookies();
         SelenideLogger.addListener("allure", new AllureSelenide().screenshots(true));
