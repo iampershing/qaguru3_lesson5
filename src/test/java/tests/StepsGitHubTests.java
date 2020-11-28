@@ -16,11 +16,32 @@ public class StepsGitHubTests extends TestBase {
     @Owner("Sergei P")
     @Severity(SeverityLevel.TRIVIAL)
     public void assertThatLectureFiveHomeworkExistUsingSteps() {
-        BaseSteps steps = new BaseSteps();
         steps.openUrl();
         steps.searchForRepository();
         steps.searchForUser();
         steps.openUserPage();
         steps.assertThatHomeworkExist();
+    }
+
+    @Test
+    @DisplayName("Using Steps - Check That it is possible to create an issue")
+    @Description("Verification that it is possible to create an issue on github using steps")
+    @Tag("GitHub")
+    @Owner("Sergei P")
+    @Severity(SeverityLevel.CRITICAL)
+    public void createIssueOnGithubUsingStepsTest() {
+        steps.openUrl();
+        steps.login();
+        steps.searchForSpecificRepository();
+        steps.openRepository();
+        steps.openIssueTab();
+        steps.clickOnSubmitNewIssue();
+        steps.fillTheTitleAndBodyForm();
+        steps.assignUser();
+        steps.assignLabels();
+        steps.submitTheIssue();
+        steps.verifyThatIssueExist();
+        steps.deleteTheIssue();
+        steps.verifyThatIssueDeleted();
     }
 }

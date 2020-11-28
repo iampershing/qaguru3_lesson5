@@ -5,11 +5,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selenide.*;
 
 @Feature("QA.Guru Homework")
 @Story("Homework")
@@ -33,5 +31,39 @@ public class SelenideGitHubTests extends TestBase {
         $(withText(NAME)).should(exist);
     }
 
-
+    @Test
+    @DisplayName("Using Selenide - Check That it is possible to create an issue")
+    @Description("Verification that it is possible to create an issue on github using pure selenide")
+    @Tag("GitHub")
+    @Owner("Sergei P")
+    @Severity(SeverityLevel.CRITICAL)
+    public void createIssueOnGithubUsingPureSelenideTest() {
+        open(URL);
+        $("[href='/login']").click();
+        $("#login_field").val("UserForEducation");
+        $("#password").val("EduPass123");
+        $("[name='commit']").click();
+        $(".header-search-input").click();
+        $(".header-search-input").setValue(REPO);
+        $(".header-search-input").pressEnter();
+        $(byLinkText(REPO)).click();
+        $("[data-tab-item='issues-tab']").click();
+        $(".js-cookie-consent-accept").click();
+        $x("//span[contains(text(),'New issue')]").should(enabled).click();
+        $("#issue_title").should(visible).val(TITLE);
+        $("#issue_body").should(visible).val(DESC);
+        $(byText("assign yourself")).click();
+        $(byText("Labels")).click();
+        $("#label-filter-field").val("bug");
+        $(".label-select-menu-item").$(byText("bug")).click();
+        $(".label-select-menu-item").pressEscape();
+        $(byText("Submit new issue")).click();
+        $("[data-tab-item='issues-tab']").click();
+        $(byText(TITLE)).should(exist);
+        $(byText(TITLE)).click();
+        $(byText("Delete issue")).click();
+        $("[name='verify_delete']").click();
+        $("[data-tab-item='issues-tab']").click();
+        $(byText(TITLE)).shouldNot(visible);
+    }
 }
